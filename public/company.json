@@ -1,0 +1,126 @@
+[
+  {
+    "id": "1dd30649-9a55-428f-a869-cba52242c4f6",
+    "name": "Company Name inc.",
+    "description": "Company Description",
+    "address": "Company Address",
+    "city": "Company City",
+    "country": "Company Country",
+    "email": "Company Email",
+    "phone": "Company Phone",
+    "website": "Company Website",
+    "createdAt": "2020-01-01T00:00:00.000Z",
+    "updatedAt": "2023-01-01T00:00:00.000Z",
+    "branches": [
+      {
+        "id": "63677c47-4d64-4fe1-8648-c37bcb81e5d7",
+        "name": "Branch Name",
+        "description": "Branch Description",
+        "address": "Branch Address",
+        "city": "Branch City",
+        "country": "Branch Country",
+        "email": "Branch Email",
+        "phone": "Branch Phone",
+        "website": "Branch Website",
+        "createdAt": "2020-01-02T00:00:00.000Z",
+        "updatedAt": "2023-01-02T00:00:00.000Z"
+      },
+      {
+        "id": "a3f7d4b7-0faa-4066-9dd2-bc71d7666e1a",
+        "name": "Branch Name 2",
+        "description": "Branch Description",
+        "address": "Branch Address",
+        "city": "Branch City",
+        "country": "Branch Country",
+        "email": "Branch Email",
+        "phone": "Branch Phone",
+        "website": "Branch Website",
+        "createdAt": "2020-01-02T00:00:00.000Z",
+        "updatedAt": "2023-01-02T00:00:00.000Z"
+      }
+    ],
+    "cards": [
+      {
+        "id": "4f3ef7be-7626-4fea-b289-b94b3b2ae1d3",
+        "name": "Card Name",
+        "barcode": "Card Barcode",
+        "createdAt": "2020-01-03T00:00:00.000Z",
+        "updatedAt": "2023-01-03T00:00:00.000Z"
+      }
+    ]
+  },
+    {
+    "id": "2dd30649-9a55-428f-a869-cba52242c4f6",
+    "name": "Company Name 2 inc.",
+    "description": "Company Description 2",
+    "address": "Company Address 2",
+    "city": "Company City 2",
+    "country": "Company Country 2",
+    "email": "Company2Email@example.com",
+    "phone": "Company Phone 2",
+    "website": "Company Website 2",
+    "createdAt": "2020-02-01T00:00:00.000Z",
+    "updatedAt": "2023-02-01T00:00:00.000Z",
+    "branches": [
+      {
+        "id": "73677c47-4d64-4fe1-8648-c37bcb81e5d7",
+        "name": "Branch Name 3",
+        "description": "Branch Description 3",
+        "address": "Branch Address 3",
+        "city": "Branch City 3",
+        "country": "Branch Country 3",
+        "email": "Branch3Email@example.com",
+        "phone": "Branch Phone 3",
+        "website": "Branch Website 3",
+        "createdAt": "2020-02-02T00:00:00.000Z",
+        "updatedAt": "2023-02-02T00:00:00.000Z"
+      }
+    ],
+    "cards": [
+      {
+        "id": "5f3ef7be-7626-4fea-b289-b94b3b2ae1d3",
+        "name": "Card Name 2",
+        "barcode": "Card Barcode 2",
+        "createdAt": "2020-02-03T00:00:00.000Z",
+        "updatedAt": "2023-02-03T00:00:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "3dd30649-9a55-428f-a869-cba52242c4f6",
+    "name": "Company Name 3 inc.",
+    "description": "Company Description 3",
+    "address": "Company Address 3",
+    "city": "Company City 3",
+    "country": "Company Country 3",
+    "email": "Company3Email@example.com",
+    "phone": "Company Phone 3",
+    "website": "Company Website 3",
+    "createdAt": "2020-03-01T00:00:00.000Z",
+    "updatedAt": "2023-03-01T00:00:00.000Z",
+    "branches": [
+      {
+        "id": "83677c47-4d64-4fe1-8648-c37bcb81e5d7",
+        "name": "Branch Name 4",
+        "description": "Branch Description 4",
+        "address": "Branch Address 4",
+        "city": "Branch City 4",
+        "country": "Branch Country 4",
+        "email": "Branch4Email@example.com",
+        "phone": "Branch Phone 4",
+        "website": "Branch Website 4",
+        "createdAt": "2020-03-02T00:00:00.000Z",
+        "updatedAt": "2023-03-02T00:00:00.000Z"
+      }
+    ],
+    "cards": [
+      {
+        "id": "6f3ef7be-7626-4fea-b289-b94b3b2ae1d3",
+        "name": "Card Name 3",
+        "barcode": "Card Barcode 3",
+        "createdAt": "2020-03-03T00:00:00.000Z",
+        "updatedAt": "2023-03-03T00:00:00.000Z"
+      }
+    ]
+  }
+]
