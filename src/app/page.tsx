@@ -1,6 +1,13 @@
-import { loadCompaniesFromJSON, saveCompaniesToJSON } from "@/lib/models/company";
-import Image from "next/image";
-import Link from "next/link";
+import Notification from '@/components/notification';
+import { PATHS } from '@/lib/constants';
+import {
+  loadCompaniesFromJSON,
+  saveCompaniesToJSON,
+} from '@/lib/models/company';
+import { NotificationContext } from '@/lib/store/notificationContext';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useContext } from 'react';
 
 type Task = {
   title: string;
@@ -9,17 +16,18 @@ type Task = {
 
 const tasks: Task[] = [
   {
-    title: "List companies",
-    href: "/companies",
+    title: 'List companies',
+    href: PATHS.COMPANIES,
   },
   {
-    title: "Create a new company",
-    href: "/companies/create",
+    title: 'Create a new company',
+    href: PATHS.CREATE_COMPANY,
   },
 ];
 
 export default async function Home() {
   const companies = await loadCompaniesFromJSON();
+
   return (
     <div className="flex flex-col items-center justify-between p-24">
       {tasks.map((task) => (

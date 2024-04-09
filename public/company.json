@@ -8,9 +8,9 @@
     "country": "Company Country",
     "email": "Company Email",
     "phone": "Company Phone",
-    "website": "Company Website",
+    "website": "Company Websitee",
     "createdAt": "2020-01-01T00:00:00.000Z",
-    "updatedAt": "2023-01-01T00:00:00.000Z",
+    "updatedAt": "April 9, 2024 at 5:34:36 PM UTC",
     "branches": [
       {
         "id": "63677c47-4d64-4fe1-8648-c37bcb81e5d7",
@@ -24,32 +24,11 @@
         "website": "Branch Website",
         "createdAt": "2020-01-02T00:00:00.000Z",
         "updatedAt": "2023-01-02T00:00:00.000Z"
-      },
-      {
-        "id": "a3f7d4b7-0faa-4066-9dd2-bc71d7666e1a",
-        "name": "Branch Name 2",
-        "description": "Branch Description",
-        "address": "Branch Address",
-        "city": "Branch City",
-        "country": "Branch Country",
-        "email": "Branch Email",
-        "phone": "Branch Phone",
-        "website": "Branch Website",
-        "createdAt": "2020-01-02T00:00:00.000Z",
-        "updatedAt": "2023-01-02T00:00:00.000Z"
       }
     ],
-    "cards": [
-      {
-        "id": "4f3ef7be-7626-4fea-b289-b94b3b2ae1d3",
-        "name": "Card Name",
-        "barcode": "Card Barcode",
-        "createdAt": "2020-01-03T00:00:00.000Z",
-        "updatedAt": "2023-01-03T00:00:00.000Z"
-      }
-    ]
+    "cards": []
   },
-    {
+  {
     "id": "2dd30649-9a55-428f-a869-cba52242c4f6",
     "name": "Company Name 2 inc.",
     "description": "Company Description 2",
@@ -60,7 +39,7 @@
     "phone": "Company Phone 2",
     "website": "Company Website 2",
     "createdAt": "2020-02-01T00:00:00.000Z",
-    "updatedAt": "2023-02-01T00:00:00.000Z",
+    "updatedAt": "April 9, 2024 at 5:24:50 PM UTC",
     "branches": [
       {
         "id": "73677c47-4d64-4fe1-8648-c37bcb81e5d7",
@@ -97,7 +76,7 @@
     "phone": "Company Phone 3",
     "website": "Company Website 3",
     "createdAt": "2020-03-01T00:00:00.000Z",
-    "updatedAt": "2023-03-01T00:00:00.000Z",
+    "updatedAt": "April 9, 2024 at 5:01:24 PM UTC",
     "branches": [
       {
         "id": "83677c47-4d64-4fe1-8648-c37bcb81e5d7",

@@ -1,16 +1,33 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage, Form } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Company, companyBranchDefault, companySchema } from "@/lib/schemas/company";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { v4 as uuidv4 } from "uuid";
-import React from "react";
-import { useFieldArray, useForm } from "react-hook-form";
+import React, { useContext, useTransition } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
+
+import { deleteCompany, saveCompany } from '@/lib/actions';
+import { Company, companySchema } from '@/lib/schemas/company';
+import { TrashIcon } from '@heroicons/react/24/solid';
+import { NOTIFICATION, PATHS } from '@/lib/constants';
+
+import { Button } from '@/components/ui/button';
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+  Form,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { CompanyBranches } from '@/components/branches';
+import { CompanyCards } from '@/components/cards';
+import { NotificationContext } from '@/lib/store/notificationContext';
 
 type CompanyEditProps = {
   company: Company;
+  notificationMessage: string;
+  isCompanyEdit?: boolean;
 };
 
 // TODO: Finish implementing the CompanyEdit component that will display a form to edit a company, with the option to save the data to a JSON file.
@@ -20,30 +37,49 @@ type CompanyEditProps = {
 // TODO: Bonus points if you implement a button to delete a branch/card from a company
 // TODO: Bonus points if you implement a button to delete a company
 
-export const CompanyEdit = ({ company }: CompanyEditProps) => {
+export const CompanyEdit = ({
+  company,
+  notificationMessage,
+  isCompanyEdit = false,
+}: CompanyEditProps) => {
+  const { showNotification } = useContext(NotificationContext);
+  const [_, startTransition] = useTransition();
+  const router = useRouter();
+
   const form = useForm<Company>({
     defaultValues: company,
     resolver: zodResolver(companySchema),
   });
 
-  const { fields: branchesFields, append: branchesAppend } = useFieldArray({
-    control: form.control,
-    name: "branches",
-    keyName: "formId",
-  });
-
-  const onSubmit = (data: Company) => {
-    console.log(data);
-  };
-
-  const handleNewBranch = () => {
-    branchesAppend({ ...companyBranchDefault, id: uuidv4() });
+  const onSubmit = async (data: Company) => {
+    saveCompany(data);
+    router.push(PATHS.HOME);
+    showNotification(notificationMessage, NOTIFICATION.SUCCESS);
   };
 
   return (
     <div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="m-4 flex flex-col gap-4 rounded-lg border bg-muted p-4">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="m-4 flex flex-col gap-4 rounded-lg border bg-muted p-4"
+        >
+          {isCompanyEdit && (
+            <div className="grid justify-items-end">
+              <TrashIcon
+                onClick={() =>
+                  startTransition(() => {
+                    deleteCompany(company.id);
+                    showNotification(
+                      'Company was successfully deleted.',
+                      NOTIFICATION.ALERT
+                    );
+                  })
+                }
+                className="size-6 cursor-pointer"
+              />
+            </div>
+          )}
           <FormField
             control={form.control}
             name="name"
@@ -110,85 +146,79 @@ export const CompanyEdit = ({ company }: CompanyEditProps) => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone</FormLabel>
+                  <FormControl>
+                    <Input placeholder="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="website"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Website</FormLabel>
+                  <FormControl>
+                    <Input placeholder="" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {form.getValues('createdAt') && (
+              <FormField
+                control={form.control}
+                name="createdAt"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Created</FormLabel>
+                    <FormControl>
+                      <Input placeholder="" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+            {form.getValues('updatedAt') && (
+              <FormField
+                control={form.control}
+                name="updatedAt"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Updated</FormLabel>
+                    <FormControl>
+                      <Input placeholder="" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
           </div>
           <div className="flex flex-col gap-2">
-            {branchesFields.map((field, index) => {
-              return (
-                <fieldset key={field.formId} className="rounded-lg border border-foreground p-2 shadow-lg">
-                  <legend className="px-4 py-0">{`Branch id: ${field.id ?? 0}`}</legend>
-                  <FormField
-                    control={form.control}
-                    name={`branches.${index}.name`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name={`branches.${index}.description`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Description</FormLabel>
-                        <FormControl>
-                          <Input placeholder="" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <div className="flex w-full gap-2 [&>div]:flex-1">
-                    <FormField
-                      control={form.control}
-                      name={`branches.${index}.address`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Address</FormLabel>
-                          <FormControl>
-                            <Input placeholder="" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name={`branches.${index}.city`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>City</FormLabel>
-                          <FormControl>
-                            <Input placeholder="" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name={`branches.${index}.country`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Country</FormLabel>
-                          <FormControl>
-                            <Input placeholder="" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </fieldset>
-              );
-            })}
-            <div>
-              <Button onClick={handleNewBranch}>Add Branch</Button>
-            </div>
+            <CompanyBranches form={form} />
+            <CompanyCards form={form} />
           </div>
           <Button type="submit">Save</Button>
         </form>
